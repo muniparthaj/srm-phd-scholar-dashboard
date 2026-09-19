@@ -1,0 +1,1415 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>J MUNI PARTHA | SRMIST Part-Time Ph.D. Scholar Dashboard</title>
+    <style>
+        :root {
+            --bg-dark: #030712;
+            --card-bg: #0b1329;
+            --accent-agentic: #00f2fe; /* Agentic AI Cyan */
+            --accent-cardio: #ff0055;  /* Cardio Red Pulse */
+            --accent-green: #10b981;   /* Safe / No Risk Green */
+            --accent-amber: #f59e0b;
+            --accent-purple: #a855f7;
+            --srm-gold: #ffb703;        /* SRMIST Accent Gold */
+            --text-primary: #f8fafc;
+            --text-secondary: #9ca3af;
+            --border-color: rgba(0, 242, 254, 0.25);
+            --glow-agentic: rgba(0, 242, 254, 0.3);
+            --glow-cardio: rgba(255, 0, 85, 0.3);
+            --glow-green: rgba(16, 185, 129, 0.4);
+        }
+
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+            font-family: 'Segoe UI', system-ui, -apple-system, sans-serif;
+        }
+
+        body {
+            background-color: var(--bg-dark);
+            color: var(--text-primary);
+            height: 100vh;
+            width: 100vw;
+            overflow: hidden;
+            display: flex;
+            flex-direction: column;
+            justify-content: space-between;
+            padding: 12px 18px;
+            background-image: 
+                radial-gradient(circle at 10% 15%, rgba(0, 242, 254, 0.08) 0%, transparent 45%),
+                radial-gradient(circle at 90% 85%, rgba(255, 0, 85, 0.08) 0%, transparent 45%);
+        }
+
+        /* Header Navigation */
+        .top-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding-bottom: 8px;
+            border-bottom: 1px solid var(--border-color);
+            height: 48px;
+        }
+
+        .header-title {
+            font-size: 1.05rem;
+            font-weight: 700;
+            color: var(--accent-agentic);
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            letter-spacing: 0.5px;
+        }
+
+        .srm-header-logo {
+            height: 36px;
+            width: auto;
+            background: #fff;
+            padding: 2px 6px;
+            border-radius: 6px;
+            box-shadow: 0 0 10px rgba(255, 255, 255, 0.2);
+        }
+
+        .nav-dashboard-bar {
+            display: flex;
+            gap: 8px;
+        }
+
+        .nav-item {
+            background: rgba(0, 242, 254, 0.08);
+            border: 1px solid var(--border-color);
+            color: #fff;
+            padding: 5px 14px;
+            border-radius: 12px;
+            font-size: 0.75rem;
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 0.2s;
+        }
+
+        .nav-item:hover {
+            background: var(--accent-agentic);
+            color: #000;
+            box-shadow: 0 0 12px var(--accent-agentic);
+        }
+
+        /* Main Layout */
+        .main-dashboard {
+            flex-grow: 1;
+            display: grid;
+            grid-template-columns: 320px 1fr;
+            gap: 16px;
+            height: calc(100vh - 76px);
+            max-height: 100%;
+        }
+
+        /* Profile Side Panel */
+        .profile-panel {
+            background: var(--card-bg);
+            border: 1px solid var(--border-color);
+            border-radius: 16px;
+            padding: 12px 14px;
+            display: flex;
+            flex-direction: column;
+            justify-content: space-between;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.6), 0 0 20px var(--glow-agentic);
+            overflow-y: auto;
+        }
+
+        .scholar-card {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            text-align: center;
+        }
+
+        .srm-banner {
+            width: 100%;
+            background: #ffffff;
+            border-radius: 8px;
+            padding: 4px;
+            margin-bottom: 8px;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
+
+        .srm-card-logo {
+            height: 38px;
+            width: auto;
+        }
+
+        .photo-frame {
+            width: 80px;
+            height: 80px;
+            border-radius: 50%;
+            padding: 3px;
+            background: linear-gradient(135deg, var(--accent-agentic), var(--accent-cardio));
+            box-shadow: 0 0 16px var(--glow-agentic);
+            margin-bottom: 4px;
+        }
+
+        .photo-frame img {
+            width: 100%;
+            height: 100%;
+            border-radius: 50%;
+            object-fit: cover;
+        }
+
+        .scholar-name-link {
+            color: #fff;
+            text-decoration: none;
+            font-size: 1.05rem;
+            font-weight: 700;
+            transition: color 0.2s;
+        }
+
+        .scholar-name-link:hover {
+            color: var(--accent-agentic);
+            text-decoration: underline;
+        }
+
+        .scholar-card .reg {
+            font-size: 0.75rem;
+            color: var(--srm-gold);
+            font-weight: 700;
+            margin-bottom: 2px;
+        }
+
+        .info-list {
+            font-size: 0.71rem;
+            color: var(--text-secondary);
+            line-height: 1.45;
+            width: 100%;
+            text-align: left;
+            background: rgba(3, 7, 18, 0.6);
+            border: 1px solid var(--border-color);
+            border-radius: 10px;
+            padding: 8px 10px;
+            margin-top: 4px;
+        }
+
+        .info-list a {
+            color: var(--accent-agentic);
+            text-decoration: none;
+        }
+
+        .info-list a:hover {
+            text-decoration: underline;
+        }
+
+        .links-bar {
+            display: flex;
+            gap: 6px;
+            margin-top: 6px;
+            width: 100%;
+        }
+
+        .profile-btn {
+            flex: 1;
+            text-align: center;
+            font-size: 0.68rem;
+            font-weight: 600;
+            padding: 4px;
+            border-radius: 8px;
+            text-decoration: none;
+            color: var(--accent-agentic);
+            background: rgba(0, 242, 254, 0.1);
+            border: 1px solid var(--accent-agentic);
+            transition: all 0.2s;
+            cursor: pointer;
+        }
+
+        .profile-btn:hover {
+            background: var(--accent-agentic);
+            color: #000;
+        }
+
+        .research-area-box {
+            width: 100%;
+            background: rgba(0, 242, 254, 0.08);
+            border: 1px solid var(--accent-agentic);
+            border-radius: 8px;
+            padding: 6px 8px;
+            margin-top: 6px;
+            font-size: 0.71rem;
+            color: #fff;
+            text-align: center;
+            font-weight: 600;
+        }
+
+        .research-title-box {
+            width: 100%;
+            background: rgba(255, 0, 85, 0.08);
+            border: 1px solid rgba(255, 0, 85, 0.3);
+            border-left: 3px solid var(--accent-cardio);
+            border-radius: 8px;
+            padding: 6px 8px;
+            margin-top: 6px;
+            text-align: left;
+        }
+
+        .research-title-box .title-label {
+            font-size: 0.62rem;
+            color: var(--accent-cardio);
+            text-transform: uppercase;
+            font-weight: 700;
+            letter-spacing: 0.5px;
+        }
+
+        .research-title-box .title-text {
+            font-size: 0.71rem;
+            color: #fff;
+            font-weight: 600;
+            line-height: 1.35;
+            margin-top: 2px;
+        }
+
+        .mentor-box {
+            background: rgba(255, 255, 255, 0.02);
+            border: 1px solid var(--border-color);
+            border-radius: 8px;
+            padding: 6px 8px;
+            margin-top: 6px;
+            font-size: 0.7rem;
+        }
+
+        .mentor-box .role {
+            color: var(--accent-purple);
+            font-weight: 700;
+            text-transform: uppercase;
+            font-size: 0.62rem;
+            margin-bottom: 2px;
+        }
+
+        .mentor-link {
+            color: #fff;
+            font-weight: 700;
+            font-size: 0.75rem;
+            text-decoration: none;
+            transition: color 0.2s;
+        }
+
+        .mentor-link:hover {
+            color: var(--accent-agentic);
+            text-decoration: underline;
+        }
+
+        /* Right Flow & Timeline Panel */
+        .timeline-panel {
+            display: flex;
+            flex-direction: column;
+            gap: 10px;
+            height: 100%;
+            overflow: hidden;
+        }
+
+        /* Patient Data Dummy Selector Bar */
+        .data-selector-bar {
+            background: rgba(11, 19, 41, 0.95);
+            border: 1px solid var(--border-color);
+            border-radius: 10px;
+            padding: 8px 12px;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            gap: 10px;
+        }
+
+        .selector-label {
+            font-size: 0.74rem;
+            font-weight: 700;
+            color: var(--srm-gold);
+            display: flex;
+            align-items: center;
+            gap: 6px;
+        }
+
+        .case-btn-group {
+            display: flex;
+            gap: 8px;
+        }
+
+        .case-btn {
+            padding: 5px 12px;
+            border-radius: 8px;
+            font-size: 0.72rem;
+            font-weight: 700;
+            cursor: pointer;
+            border: 1px solid var(--border-color);
+            background: rgba(255, 255, 255, 0.05);
+            color: var(--text-secondary);
+            transition: all 0.2s ease;
+        }
+
+        .case-btn.active-danger {
+            background: rgba(255, 0, 85, 0.2);
+            color: #ff0055;
+            border-color: #ff0055;
+            box-shadow: 0 0 10px rgba(255, 0, 85, 0.3);
+        }
+
+        .case-btn.active-safe {
+            background: rgba(16, 185, 129, 0.2);
+            color: #10b981;
+            border-color: #10b981;
+            box-shadow: 0 0 10px rgba(16, 185, 129, 0.3);
+        }
+
+        /* Multi-Agent Orchestration Flow Card */
+        .anim-flow-card {
+            background: var(--card-bg);
+            border: 1px solid var(--border-color);
+            border-radius: 14px;
+            padding: 10px 14px;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.6), 0 0 20px var(--glow-agentic);
+            display: flex;
+            flex-direction: column;
+            gap: 6px;
+        }
+
+        .anim-title {
+            font-size: 0.74rem;
+            font-weight: 700;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+        }
+
+        .agentic-flow {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 4px 0;
+        }
+
+        .agent-node {
+            width: 135px;
+            background: rgba(0, 242, 254, 0.12);
+            border: 1px solid var(--accent-agentic);
+            border-radius: 8px;
+            padding: 8px 6px;
+            text-align: center;
+            font-size: 0.73rem;
+            font-weight: 700;
+            color: #fff;
+            box-shadow: 0 0 12px var(--glow-agentic);
+            z-index: 2;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            position: relative;
+            animation: nodePulse 2s infinite ease-in-out;
+        }
+
+        @keyframes nodePulse {
+            0%, 100% {
+                transform: scale(1);
+                box-shadow: 0 0 10px var(--glow-agentic);
+            }
+            50% {
+                transform: scale(1.04);
+                box-shadow: 0 0 20px var(--accent-agentic);
+                border-color: #fff;
+            }
+        }
+
+        .agent-node:hover {
+            background: var(--accent-agentic);
+            color: #000;
+            transform: scale(1.08) !important;
+            box-shadow: 0 0 25px var(--accent-agentic);
+        }
+
+        .agent-node .node-click-hint {
+            display: block;
+            font-size: 0.58rem;
+            color: var(--srm-gold);
+            margin-top: 3px;
+            text-transform: uppercase;
+            font-weight: 800;
+        }
+
+        .agent-node:hover .node-click-hint {
+            color: #000;
+        }
+
+        .flow-connector {
+            flex-grow: 1;
+            height: 2px;
+            background: rgba(255, 255, 255, 0.12);
+            position: relative;
+            overflow: hidden;
+        }
+
+        .flow-particle {
+            position: absolute;
+            width: 30px;
+            height: 100%;
+            background: linear-gradient(90deg, transparent, var(--accent-agentic), transparent);
+            animation: flowMove 1.8s linear infinite;
+        }
+
+        @keyframes flowMove {
+            0% { left: -30%; }
+            100% { left: 130%; }
+        }
+
+        .ecg-box {
+            height: 38px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            background: rgba(3, 7, 18, 0.7);
+            border-radius: 8px;
+            border: 1px solid rgba(255, 0, 85, 0.2);
+            overflow: hidden;
+        }
+
+        .ecg-svg {
+            width: 100%;
+            height: 32px;
+        }
+
+        .ecg-line {
+            fill: none;
+            stroke: var(--accent-cardio);
+            stroke-width: 2.2;
+            stroke-dasharray: 600;
+            stroke-dashoffset: 600;
+            animation: ecgDash 2.2s linear infinite;
+            filter: drop-shadow(0 0 6px var(--accent-cardio));
+        }
+
+        .ecg-line-safe {
+            stroke: var(--accent-green) !important;
+            filter: drop-shadow(0 0 6px var(--accent-green)) !important;
+        }
+
+        @keyframes ecgDash {
+            0% { stroke-dashoffset: 600; }
+            100% { stroke-dashoffset: 0; }
+        }
+
+        /* Timeline Grid & Cards */
+        .timeline-grid {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 12px;
+            flex-grow: 1;
+        }
+
+        .timeline-card {
+            background: var(--card-bg);
+            border: 1px solid var(--border-color);
+            border-radius: 14px;
+            padding: 12px 14px;
+            display: flex;
+            flex-direction: column;
+            justify-content: space-between;
+            box-shadow: 0 8px 20px rgba(0,0,0,0.5);
+            cursor: pointer;
+            transition: all 0.3s ease;
+            position: relative;
+            animation: cardBlinkGlow 2.5s infinite ease-in-out;
+        }
+
+        @keyframes cardBlinkGlow {
+            0%, 100% {
+                border-color: rgba(0, 242, 254, 0.3);
+                box-shadow: 0 0 10px rgba(0, 242, 254, 0.1);
+            }
+            50% {
+                border-color: var(--accent-agentic);
+                box-shadow: 0 0 22px var(--glow-agentic);
+            }
+        }
+
+        .timeline-card:hover {
+            transform: translateY(-4px) scale(1.02);
+            border-color: #fff;
+            box-shadow: 0 0 30px var(--accent-agentic);
+        }
+
+        .timeline-card-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 6px;
+        }
+
+        .pill {
+            padding: 2px 8px;
+            border-radius: 10px;
+            font-size: 0.65rem;
+            font-weight: 700;
+            text-transform: uppercase;
+        }
+
+        .pill-done { background: rgba(16, 185, 129, 0.2); color: var(--accent-green); border: 1px solid var(--accent-green); }
+        .pill-prog { background: rgba(0, 242, 254, 0.2); color: var(--accent-agentic); border: 1px solid var(--accent-agentic); }
+        .pill-plan { background: rgba(245, 158, 11, 0.2); color: var(--accent-amber); border: 1px solid var(--accent-amber); }
+
+        .timeline-title {
+            font-size: 0.88rem;
+            font-weight: 700;
+            color: #fff;
+            margin-bottom: 4px;
+        }
+
+        .timeline-body {
+            font-size: 0.74rem;
+            color: var(--text-secondary);
+            line-height: 1.4;
+        }
+
+        .click-guidance-badge {
+            font-size: 0.68rem;
+            color: var(--accent-agentic);
+            background: rgba(0, 242, 254, 0.1);
+            border: 1px solid var(--accent-agentic);
+            border-radius: 8px;
+            padding: 4px 6px;
+            margin-top: 6px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 4px;
+            font-weight: 700;
+            animation: pulseText 1.5s infinite;
+        }
+
+        @keyframes pulseText {
+            0%, 100% { opacity: 0.7; }
+            50% { opacity: 1; }
+        }
+
+        /* Deadlines Strip */
+        .deadlines-strip {
+            background: var(--card-bg);
+            border: 1px solid var(--border-color);
+            border-radius: 12px;
+            padding: 8px 12px;
+        }
+
+        .deadlines-table {
+            width: 100%;
+            border-collapse: collapse;
+            font-size: 0.72rem;
+        }
+
+        .deadlines-table th, .deadlines-table td {
+            padding: 5px 8px;
+            text-align: left;
+            border-bottom: 1px solid rgba(255, 255, 255, 0.05);
+        }
+
+        .deadlines-table th {
+            color: var(--accent-agentic);
+            text-transform: uppercase;
+            font-size: 0.65rem;
+        }
+
+        /* POPUP MODAL OVERLAYS */
+        .modal-overlay {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100vw;
+            height: 100vh;
+            background: rgba(3, 7, 18, 0.88);
+            backdrop-filter: blur(10px);
+            display: none;
+            justify-content: center;
+            align-items: center;
+            z-index: 1000;
+        }
+
+        .modal-overlay.active {
+            display: flex;
+        }
+
+        .modal-box-large {
+            background: #0f172a;
+            border: 1px solid var(--accent-agentic);
+            border-radius: 20px;
+            width: 92%;
+            max-width: 950px;
+            max-height: 85vh;
+            overflow-y: auto;
+            padding: 24px;
+            box-shadow: 0 0 50px var(--glow-agentic);
+            position: relative;
+            animation: modalPop 0.3s cubic-bezier(0.18, 0.89, 0.32, 1.28);
+        }
+
+        @keyframes modalPop {
+            0% { transform: scale(0.85); opacity: 0; }
+            100% { transform: scale(1); opacity: 1; }
+        }
+
+        .modal-close {
+            position: absolute;
+            top: 15px;
+            right: 20px;
+            background: rgba(255,255,255,0.1);
+            border: 1px solid rgba(255,255,255,0.2);
+            color: #fff;
+            border-radius: 50%;
+            width: 32px;
+            height: 32px;
+            font-size: 1.1rem;
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        /* Dynamic Simulation & Outcome Cards */
+        .simulation-container {
+            background: rgba(3, 7, 18, 0.85);
+            border: 1px solid var(--accent-agentic);
+            border-radius: 12px;
+            padding: 16px;
+            margin-top: 12px;
+        }
+
+        .sim-step-box {
+            background: rgba(15, 23, 42, 0.9);
+            border-left: 4px solid var(--accent-agentic);
+            border-radius: 8px;
+            padding: 12px;
+            margin-bottom: 10px;
+            font-size: 0.82rem;
+            line-height: 1.5;
+        }
+
+        .sim-step-box h4 {
+            color: var(--accent-agentic);
+            font-size: 0.85rem;
+            margin-bottom: 4px;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+        }
+
+        .code-block-sim {
+            background: #000;
+            border: 1px solid rgba(0, 242, 254, 0.2);
+            color: #00f2fe;
+            font-family: 'Courier New', Courier, monospace;
+            padding: 8px 12px;
+            border-radius: 6px;
+            font-size: 0.75rem;
+            margin-top: 6px;
+            white-space: pre-wrap;
+        }
+
+        /* Outcome Visual Alerts */
+        .alert-card-danger {
+            background: rgba(255, 0, 85, 0.1);
+            border: 2px solid var(--accent-cardio);
+            border-radius: 12px;
+            padding: 16px;
+            margin-top: 12px;
+            animation: dangerGlow 1.8s infinite alternate;
+        }
+
+        @keyframes dangerGlow {
+            0% { box-shadow: 0 0 10px rgba(255, 0, 85, 0.2); }
+            100% { box-shadow: 0 0 30px rgba(255, 0, 85, 0.6); }
+        }
+
+        .alert-card-safe {
+            background: rgba(16, 185, 129, 0.1);
+            border: 2px solid var(--accent-green);
+            border-radius: 12px;
+            padding: 16px;
+            margin-top: 12px;
+            animation: safeGlow 1.8s infinite alternate;
+        }
+
+        @keyframes safeGlow {
+            0% { box-shadow: 0 0 10px rgba(16, 185, 129, 0.2); }
+            100% { box-shadow: 0 0 30px rgba(16, 185, 129, 0.6); }
+        }
+
+        .guidelines-grid {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 10px;
+            margin-top: 10px;
+        }
+
+        .guide-item {
+            background: rgba(15, 23, 42, 0.8);
+            border: 1px solid rgba(255,255,255,0.1);
+            border-radius: 8px;
+            padding: 10px;
+            font-size: 0.78rem;
+        }
+
+        .embedded-scholar-info {
+            background: rgba(30, 41, 59, 0.8);
+            border-left: 5px solid var(--accent-agentic);
+            border-radius: 12px;
+            padding: 16px;
+            margin-bottom: 16px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .embedded-profile-grid {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 12px;
+            font-size: 0.85rem;
+            margin-top: 10px;
+        }
+
+        .embedded-profile-item {
+            background: rgba(15, 23, 42, 0.6);
+            border: 1px solid rgba(255, 255, 255, 0.08);
+            padding: 10px;
+            border-radius: 8px;
+        }
+
+        .acc-item {
+            background: #1e293b;
+            border: 1px solid rgba(255,255,255,0.1);
+            border-radius: 10px;
+            margin-bottom: 10px;
+            overflow: hidden;
+        }
+
+        .acc-header {
+            padding: 12px 16px;
+            cursor: pointer;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            background: rgba(255, 255, 255, 0.02);
+            font-weight: 700;
+        }
+
+        .acc-body {
+            display: none;
+            padding: 14px 16px;
+            background: rgba(15, 23, 42, 0.6);
+            font-size: 0.82rem;
+            line-height: 1.5;
+            border-top: 1px solid rgba(255,255,255,0.05);
+        }
+
+        .acc-item.open .acc-body {
+            display: block;
+        }
+    </style>
+</head>
+<body>
+
+    <!-- Header Navigation Bar -->
+    <header class="top-header">
+        <div class="header-title">
+            <img src="https://upload.wikimedia.org/wikipedia/en/7/7a/SRM_Institute_of_Science_and_Technology_Logo.svg?utm_source=en.wikipedia.org&utm_campaign=imageinfo&utm_content=original" alt="SRM IST Logo" class="srm-header-logo">
+            <span>J MUNI PARTHA | SRMIST Part-Time Ph.D. Scholar Dashboard</span>
+        </div>
+
+        <!-- Navigation Dashboard Links -->
+        <nav class="nav-dashboard-bar">
+            <button class="nav-item" onclick="openModal('scholarProfileModal')">👤 Scholar Profile</button>
+            <button class="nav-item" onclick="openModal('timelineProgressModal')">🗓️ Timeline Progress</button>
+            <button class="nav-item" onclick="openModal('assessmentScheduleModal')">📌 Assessment Schedule</button>
+        </nav>
+    </header>
+
+    <!-- Main Dashboard Screen -->
+    <main class="main-dashboard">
+
+        <!-- Left Profile Side Panel -->
+        <aside class="profile-panel">
+            <div class="scholar-card">
+                <!-- SRMIST Banner Logo -->
+                <div class="srm-banner">
+                    <img src="https://upload.wikimedia.org/wikipedia/en/7/7a/SRM_Institute_of_Science_and_Technology_Logo.svg?utm_source=en.wikipedia.org&utm_campaign=imageinfo&utm_content=original" alt="SRM Institute of Science and Technology" class="srm-card-logo">
+                </div>
+
+                <div class="photo-frame">
+                    <img id="scholarPhoto" src="https://media.licdn.com/dms/image/v2/D5603AQFdTgDno6qBNQ/profile-displayphoto-scale_400_400/B56Z5KCSyrHkAk-/0/1779358578183?e=1791417600&v=beta&t=I6Se-aJnr9r2MVpuIkNdoqfrxVrgdLXJc0yG9eUb4lM" alt="J MUNI PARTHA">
+                </div>
+                <!-- Scholar Name -->
+                <a href="https://vidwan.inflibnet.ac.in/profile/578407" target="_blank" class="scholar-name-link">
+                    Mr. J MUNI PARTHA
+                </a>
+                <div class="reg">PA2613003013001 | SRMIST KTR</div>
+                
+                <div class="info-list">
+                    💼 <strong>Employment Role:</strong> Assistant Professor in <a href="https://vishnu.edu.in/" target="_blank">Vishnu Institute of Technology-Bhimavaram (VIT-B)</a><br>
+                    🎓 <strong>Scholar Role:</strong> Part-Time Academic External Research Scholar at SRM IST, KTR, Chennai<br>
+                    🆔 <strong>Student ID:</strong> 739561<br>
+                    🏫 <strong>Institution / Dept:</strong> Dept. of Engineering & Technology (E&T), Kattankulathur – Chennai<br>
+                    ✉️ <strong>Email:</strong> mj9356@srmist.edu.in
+                </div>
+
+                <div class="links-bar">
+                    <button onclick="openModal('scholarProfileModal')" class="profile-btn">👤 Scholar Info</button>
+                    <a href="https://vidwan.inflibnet.ac.in/profile/578407" target="_blank" class="profile-btn">🌐 Vidwan Profile</a>
+                </div>
+
+                <!-- Research Area Badge -->
+                <div class="research-area-box">
+                    🤖 Research Area: Agentic AI
+                </div>
+            </div>
+
+            <!-- Proposed Research Title Box -->
+            <div class="research-title-box">
+                <div class="title-label">Proposed Research Title</div>
+                <div class="title-text">
+                    An Agentic AI Framework for Cardio-Oncology Risk Prediction Using Collaborative Multi-Agent LLMs
+                </div>
+            </div>
+
+            <!-- Hyperlinked Advisory Guides -->
+            <div>
+                <div class="mentor-box">
+                    <div class="role">👨‍🏫 Research Supervisor</div>
+                    <a href="https://www.srmist.edu.in/faculty/r-subash/" target="_blank" class="mentor-link">
+                        Dr. Subash R 🔗
+                    </a><br>
+                    Associate Professor, CTECH, SRMIST Kattankulathur
+                </div>
+
+                <div class="mentor-box">
+                    <div class="role">🏫 Local Research Guide</div>
+                    <a href="https://vidwan.inflibnet.ac.in/profile/257298" target="_blank" class="mentor-link">
+                        Dr. Venkata Naga Rani Bandaru 🔗
+                    </a><br>
+                    Associate Professor, IT Dept, <a href="https://vishnu.edu.in/" target="_blank" style="color: #fff;">VIT-B, Bhimavaram</a>
+                </div>
+            </div>
+        </aside>
+
+        <!-- Right Flow & Timeline Panel -->
+        <section class="timeline-panel">
+
+            <!-- PATIENT CASE DUMMY SELECTOR BAR -->
+            <div class="data-selector-bar">
+                <div class="selector-label">
+                    <span>⚡ SELECT DUMMY PATIENT DATA FOR SIMULATION:</span>
+                </div>
+                <div class="case-btn-group">
+                    <button class="case-btn active-danger" id="btnCaseHigh" onclick="selectPatientCase('high')">
+                        🚨 Case A: High Risk (Doxorubicin + HER2)
+                    </button>
+                    <button class="case-btn" id="btnCaseSafe" onclick="selectPatientCase('safe')">
+                        💚 Case B: Low/No Risk (Routine Normal Check)
+                    </button>
+                </div>
+            </div>
+
+            <!-- Multi-Agent Orchestration Flow Card -->
+            <div class="anim-flow-card">
+                <div class="anim-title" style="color: var(--accent-agentic);">
+                    <span>🤖 Collaborative Multi-Agent LLM Orchestration Flow (Click Nodes to Simulate)</span>
+                    <span style="color: var(--accent-cardio); font-size: 0.68rem;" id="ecgLabel">❤️‍acyl REAL-TIME CARDIO-ONCOLOGY ECG STREAM</span>
+                </div>
+
+                <!-- Interactive Agentic Flow Nodes -->
+                <div class="agentic-flow">
+                    <div class="agent-node" onclick="openAgentSimulation('clinicalDataAgent')">
+                        📋 Clinical Data Agent
+                        <span class="node-click-hint">⚡ Click to Simulate</span>
+                    </div>
+
+                    <div class="flow-connector"><div class="flow-particle"></div></div>
+
+                    <div class="agent-node" onclick="openAgentSimulation('oncologyLlmAgent')">
+                        🧠 Oncology LLM Agent
+                        <span class="node-click-hint">⚡ Click to Simulate</span>
+                    </div>
+
+                    <div class="flow-connector"><div class="flow-particle" style="animation-delay: 0.6s;"></div></div>
+
+                    <div class="agent-node" onclick="openAgentSimulation('cardiologyLlmAgent')">
+                        🫀 Cardiology LLM Agent
+                        <span class="node-click-hint">⚡ Click to Simulate</span>
+                    </div>
+
+                    <div class="flow-connector"><div class="flow-particle" style="animation-delay: 1.2s;"></div></div>
+
+                    <div class="agent-node" onclick="openAgentSimulation('riskPredictionAgent')">
+                        📊 Risk Prediction Agent
+                        <span class="node-click-hint">⚡ Click to Simulate</span>
+                    </div>
+                </div>
+
+                <!-- ECG Pulse Animation -->
+                <div class="ecg-box">
+                    <svg class="ecg-svg" viewBox="0 0 500 60">
+                        <path id="ecgPathLine" class="ecg-line" d="M 0 30 L 100 30 L 110 15 L 120 45 L 130 8 L 140 52 L 150 30 L 250 30 L 260 15 L 270 45 L 280 8 L 290 52 L 300 30 L 400 30 L 410 15 L 420 45 L 430 8 L 440 52 L 450 30 L 500 30"/>
+                    </svg>
+                </div>
+            </div>
+
+            <!-- Pulsating Month Cards Grid -->
+            <div class="timeline-grid">
+                
+                <!-- AUG 2026 CARD -->
+                <div class="timeline-card" onclick="openModal('timelineProgressModal')">
+                    <div>
+                        <div class="timeline-card-header">
+                            <span style="font-size: 0.8rem; font-weight: 700; color: var(--accent-agentic);">AUG 2026</span>
+                            <span class="pill pill-done">DC-1 Completed</span>
+                        </div>
+                        <div class="timeline-title">DC-1 & Coursework Start</div>
+                        <div class="timeline-body">
+                            • DC-1 Meeting conducted on 10-Aug-2026 at SRMIST.<br>
+                            • Commenced RM & RPE classes starting 20-Aug.<br>
+                            • Submitted RM Assignment-1 (Score: 25/25).
+                        </div>
+                    </div>
+                    <div class="click-guidance-badge">👉 Click card for full weekly details</div>
+                </div>
+
+                <!-- SEP 2026 CARD -->
+                <div class="timeline-card" onclick="openModal('timelineProgressModal')">
+                    <div>
+                        <div class="timeline-card-header">
+                            <span style="font-size: 0.8rem; font-weight: 700; color: var(--accent-agentic);">SEP 2026</span>
+                            <span class="pill pill-prog">In Progress</span>
+                        </div>
+                        <div class="timeline-title">Lit Review & Cycle Test-1</div>
+                        <div class="timeline-body">
+                            • Screened research papers on Agentic AI.<br>
+                            • Submitted RM Assignment-3 on 13-Sep.<br>
+                            • Completing Assign-2 & 6; CT-1 on 26-Sep.
+                        </div>
+                    </div>
+                    <div class="click-guidance-badge">👉 Click card for full weekly details</div>
+                </div>
+
+                <!-- OCT 2026 CARD -->
+                <div class="timeline-card" onclick="openModal('timelineProgressModal')">
+                    <div>
+                        <div class="timeline-card-header">
+                            <span style="font-size: 0.8rem; font-weight: 700; color: var(--accent-agentic);">OCT 2026</span>
+                            <span class="pill pill-plan">Planned</span>
+                        </div>
+                        <div class="timeline-title">Questionnaire & Paper 1</div>
+                        <div class="timeline-body">
+                            • Submit RM Assignment-5 Questionnaire by 05-Oct.<br>
+                            • Online Cycle Test-2 on 31-Oct-2026.<br>
+                            • Draft IEEE Conference Paper-1 framework.
+                        </div>
+                    </div>
+                    <div class="click-guidance-badge">👉 Click card for full weekly details</div>
+                </div>
+            </div>
+
+            <!-- Deadlines Strip -->
+            <div class="deadlines-strip" onclick="openModal('assessmentScheduleModal')" style="cursor: pointer;">
+                <table class="deadlines-table">
+                    <thead>
+                        <tr>
+                            <th>Assessment / Exam</th>
+                            <th>Target Date</th>
+                            <th>Submission Format</th>
+                            <th>Scope / Details (Click for Assessment Panel)</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td><strong>RM Assignment-4</strong></td>
+                            <td>24-Sep-2026</td>
+                            <td>Handwritten PDF Scan</td>
+                            <td>Research Quality Metrics</td>
+                        </tr>
+                        <tr>
+                            <td><strong>Cycle Test - 1</strong></td>
+                            <td>26-Sep-2026</td>
+                            <td>Online Exam</td>
+                            <td>RM Units 1–2 | RPE Units 1–3</td>
+                        </tr>
+                        <tr>
+                            <td><strong>RM Assignment-2 & 6</strong></td>
+                            <td>30-Sep-2026</td>
+                            <td>Online Portal</td>
+                            <td>Lit Review & Hypothesis</td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+
+        </section>
+    </main>
+
+    <!-- ==================== POPUP MODALS ==================== -->
+
+    <!-- AGENT INTERNAL SIMULATION POPUP MODAL -->
+    <div class="modal-overlay" id="agentSimulationModal">
+        <div class="modal-box-large">
+            <button class="modal-close" onclick="closeModal('agentSimulationModal')">✕</button>
+            <div id="simulationContent">
+                <!-- Dynamic Simulation Content Injected Here via JavaScript -->
+            </div>
+        </div>
+    </div>
+
+    <!-- 1. Scholar Profile Popup Modal -->
+    <div class="modal-overlay" id="scholarProfileModal">
+        <div class="modal-box-large">
+            <button class="modal-close" onclick="closeModal('scholarProfileModal')">✕</button>
+            <div class="embedded-scholar-info">
+                <div>
+                    <h2 style="color: #fff; margin-bottom: 4px;">SRM Institute of Science and Technology</h2>
+                    <span style="color: var(--srm-gold); font-weight: 700;">Ph.D. Scholar Profile Details | Kattankulathur, Chennai</span>
+                </div>
+                <img src="https://upload.wikimedia.org/wikipedia/en/7/7a/SRM_Institute_of_Science_and_Technology_Logo.svg?utm_source=en.wikipedia.org&utm_campaign=imageinfo&utm_content=original" alt="SRMIST Logo" style="height: 50px; background: #fff; padding: 4px; border-radius: 6px;">
+            </div>
+            
+            <div class="embedded-profile-grid">
+                <div class="embedded-profile-item">
+                    <strong style="color: var(--accent-agentic);">Research Scholar:</strong><br>
+                    Mr. J Muni Partha
+                </div>
+                <div class="embedded-profile-item">
+                    <strong style="color: var(--accent-agentic);">Category:</strong><br>
+                    PT-EXT-Academic
+                </div>
+                <div class="embedded-profile-item">
+                    <strong style="color: var(--accent-agentic);">Employment Role:</strong><br>
+                    Assistant Professor in <a href="https://vishnu.edu.in/" target="_blank" style="color: var(--accent-agentic);">Vishnu Institute of Technology-Bhimavaram (VIT-B)</a>
+                </div>
+                <div class="embedded-profile-item">
+                    <strong style="color: var(--accent-agentic);">Scholar Role:</strong><br>
+                    Part-Time Academic External Research Scholar at SRM IST, KTR, Chennai
+                </div>
+                <div class="embedded-profile-item">
+                    <strong style="color: var(--accent-agentic);">Program:</strong><br>
+                    CSE [Ph.D. - PT Ext - E&T]
+                </div>
+                <div class="embedded-profile-item">
+                    <strong style="color: var(--accent-agentic);">Student ID:</strong><br>
+                    739561
+                </div>
+                <div class="embedded-profile-item">
+                    <strong style="color: var(--accent-agentic);">Register No.:</strong><br>
+                    PA2613003013001
+                </div>
+                <div class="embedded-profile-item">
+                    <strong style="color: var(--accent-agentic);">Institution / Department:</strong><br>
+                    Dept. of Engineering & Technology (E&T), Kattankulathur – Chennai
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- 2. Timeline Progress Popup Modal -->
+    <div class="modal-overlay" id="timelineProgressModal">
+        <div class="modal-box-large">
+            <button class="modal-close" onclick="closeModal('timelineProgressModal')">✕</button>
+            <h2 style="color: var(--accent-agentic); margin-bottom: 12px;">🗓️ PhD Weekly Progress Monitoring Timeline — SRMIST</h2>
+
+            <div class="acc-item open">
+                <div class="acc-header" onclick="this.parentElement.classList.toggle('open')">
+                    <span>📅 2nd Week - August 2026 (Completed)</span>
+                    <span class="pill pill-done">Completed</span>
+                </div>
+                <div class="acc-body">
+                    <strong>Work Planned / Review:</strong> DC-1 Meeting conducted on 10-Aug-2026 at 10:00 AM at SRMIST Kattankulathur. Discussed research area as Agentic AI.<br>
+                    <strong>Status:</strong> DC-1 successfully conducted.<br>
+                    <strong>Action Items:</strong> Refine objectives based on literature; plan clinical association with SRM Hospital.
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- 3. Assessment Schedule Popup Modal -->
+    <div class="modal-overlay" id="assessmentScheduleModal">
+        <div class="modal-box-large">
+            <button class="modal-close" onclick="closeModal('assessmentScheduleModal')">✕</button>
+            <h2 style="color: var(--accent-purple); margin-bottom: 12px;">📌 Key Assessments & Examination Schedule — SRMIST</h2>
+
+            <div class="acc-item open">
+                <div class="acc-header">
+                    <span>RM Assignment-4 (Handwritten Scan)</span>
+                    <span style="color: var(--accent-amber);">24-Sep-2026 (11:59 PM)</span>
+                </div>
+                <div class="acc-body">
+                    Topic: Research Quality Metrics. Required submission in A4 long-size notebook scanned PDF format.
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- JavaScript Agentic Simulation Engine -->
+    <script>
+        let selectedCase = 'high';
+
+        function selectPatientCase(caseType) {
+            selectedCase = caseType;
+            const btnHigh = document.getElementById('btnCaseHigh');
+            const btnSafe = document.getElementById('btnCaseSafe');
+            const ecgPath = document.getElementById('ecgPathLine');
+            const ecgLabel = document.getElementById('ecgLabel');
+
+            if (caseType === 'high') {
+                btnHigh.className = 'case-btn active-danger';
+                btnSafe.className = 'case-btn';
+                ecgPath.className = 'ecg-line';
+                ecgLabel.innerHTML = '❤️‍🩹 REAL-TIME CARDIO-ONCOLOGY ECG STREAM (HIGH RISK ELEVATED)';
+            } else {
+                btnHigh.className = 'case-btn';
+                btnSafe.className = 'case-btn active-safe';
+                ecgPath.className = 'ecg-line ecg-line-safe';
+                ecgLabel.innerHTML = '💚 REAL-TIME CARDIO-ONCOLOGY ECG STREAM (NORMAL HOMEOSTASIS)';
+            }
+        }
+
+        function openModal(id) {
+            document.getElementById(id).classList.add('active');
+        }
+
+        function closeModal(id) {
+            document.getElementById(id).classList.remove('active');
+        }
+
+        const agentSimulations = {
+            clinicalDataAgent: {
+                high: {
+                    title: "📋 Clinical Data Agent (Case A: High Risk Scenario)",
+                    subtitle: "Autonomous Extraction & High-Risk Feature Tensor Vectorization",
+                    steps: [
+                        {
+                            title: "1. Data Ingestion & Stream Ingestion",
+                            desc: "Ingested Patient #SRM-CARDIO-8832 records. Detected high-dose Anthracyclines (Doxorubicin) combined with HER2-targeted agents.",
+                            code: "INGEST_RECORD: { Doxorubicin_Cumulative: '320 mg/m2', Troponin_T: '0.12 ng/mL (ELEVATED)', QTc_Interval: '468 ms' }"
+                        },
+                        {
+                            title: "2. Model Context Protocol (MCP) Vectorization",
+                            desc: "Converted multimodal patient records into high-risk normalized tensor embeddings for multi-agent reasoning.",
+                            code: "MCP_VECTOR: [0.912, 0.841, 0.723, ..., 0.982] -> Emitted to Oncology & Cardiology Agents"
+                        }
+                    ]
+                },
+                safe: {
+                    title: "📋 Clinical Data Agent (Case B: Low / Safe Scenario)",
+                    subtitle: "Autonomous Baseline Normal Extraction Layer",
+                    steps: [
+                        {
+                            title: "1. Normal Routine Ingestion",
+                            desc: "Ingested Patient #SRM-CARDIO-1042 baseline pre-chemotherapy assessment. Biomarkers within optimal physiological range.",
+                            code: "INGEST_RECORD: { Baseline_LVEF: '64%', Troponin_T: '0.01 ng/mL (NORMAL)', QTc_Interval: '410 ms (NORMAL)' }"
+                        },
+                        {
+                            title: "2. Baseline Embedding Generation",
+                            desc: "Generated baseline homeostasis embedding vector.",
+                            code: "MCP_VECTOR: [0.082, 0.012, 0.045, ..., 0.021] -> Emitted to Oncology & Cardiology Agents"
+                        }
+                    ]
+                }
+            },
+            oncologyLlmAgent: {
+                high: {
+                    title: "🧠 Oncology LLM Agent (Case A: High Risk Reasoning)",
+                    subtitle: "Anthracycline Cardiotoxicity & ROS Accumulation Prediction",
+                    steps: [
+                        {
+                            title: "1. Chemotherapy Stress Calculation",
+                            desc: "Analyzed cumulative Doxorubicin dose. Exceeds standard safe threshold (300 mg/m2), indicating high risk of myocyte free radical accumulation.",
+                            code: "LLM_REASONING: 'Anthracycline-induced Reactive Oxygen Species (ROS) risk exceeds 80% boundary.'"
+                        },
+                        {
+                            title: "2. Communication Signal to Cardiology Agent",
+                            desc: "Emitted high cardiotoxicity probability alert to Cardiology Agent.",
+                            code: "EMIT_SIGNAL: { Cardiotoxicity_Probability: '0.84', ROS_Stress_Index: 'CRITICAL' }"
+                        }
+                    ]
+                },
+                safe: {
+                    title: "🧠 Oncology LLM Agent (Case B: Low / Safe Reasoning)",
+                    subtitle: "Standard Chemo Regimen Toxicity Evaluation",
+                    steps: [
+                        {
+                            title: "1. Low Dosing Impact Assessment",
+                            desc: "Patient receives targeted low-dose adjuvant therapy with zero cumulative anthracycline toxicity.",
+                            code: "LLM_REASONING: 'Low-dose regimen with minimal oxidative stress potential.'"
+                        },
+                        {
+                            title: "2. Communication Signal to Cardiology Agent",
+                            desc: "Emitted low cardiotoxicity signal.",
+                            code: "EMIT_SIGNAL: { Cardiotoxicity_Probability: '0.04', ROS_Stress_Index: 'NEGLIGIBLE' }"
+                        }
+                    ]
+                }
+            },
+            cardiologyLlmAgent: {
+                high: {
+                    title: "🫀 Cardiology LLM Agent (Case A: High Risk Reasoning)",
+                    subtitle: "Real-Time Electrocardiogram & Hemodynamic Strain Reasoning",
+                    steps: [
+                        {
+                            title: "1. ECG Telemetry Waveform Analysis",
+                            desc: "Detected T-wave inversion in leads V4-V6 and Global Longitudinal Strain (GLS) reduction of -12.4%.",
+                            code: "ECG_ANALYSIS: 'Subclinical left ventricular systolic dysfunction detected. High probability of heart failure progression.'"
+                        },
+                        {
+                            title: "2. Cross-Agent Negotiation Signal",
+                            desc: "Advised immediate initiation of cardioprotective agents prior to further chemo cycles.",
+                            code: "EMIT_SIGNAL: { Cardiac_Damage_Risk: 'STAGE-B HEART FAILURE', Alert: 'Cardioprotection Required' }"
+                        }
+                    ]
+                },
+                safe: {
+                    title: "🫀 Cardiology LLM Agent (Case B: Low / Safe Reasoning)",
+                    subtitle: "Baseline Heart Rhythm & Strain Telemetry",
+                    steps: [
+                        {
+                            title: "1. ECG Telemetry Waveform Analysis",
+                            desc: "Normal sinus rhythm, uncompromised LVEF (64%), normal cardiac strain parameters.",
+                            code: "ECG_ANALYSIS: 'ECG parameters stable. No ST-T segment deviation or strain compromise.'"
+                        },
+                        {
+                            title: "2. Cross-Agent Negotiation Signal",
+                            desc: "Confirmed full cardiac clearance for standard treatment schedule.",
+                            code: "EMIT_SIGNAL: { Cardiac_Damage_Risk: 'STAGE-0 (SAFE)', Alert: 'Proceed Normal Routine' }"
+                        }
+                    ]
+                }
+            },
+            riskPredictionAgent: {
+                high: {
+                    isDanger: true,
+                    title: "🚨 Risk Prediction Agent: HIGH CARDIOTOXICITY RISK PREDICTED",
+                    subtitle: "Consensus Score: 84.6% High Risk | Patient #SRM-CARDIO-8832",
+                    shap: "Primary Drivers: Cumulative Anthracycline Dose (42%), Elevated Troponin-T (31%), Reduced GLS Strain (27%)",
+                    guidelines: [
+                        { title: "💊 Cardioprotective Therapy", desc: "Initiate Dexrazoxane or ACE-Inhibitors (Enalapril 2.5mg) immediately prior to Next Chemo Cycle." },
+                        { title: "🫀 Diagnostic Monitoring", desc: "Schedule 3D Echo LVEF and Strain imaging within 48 hours. Monitor Troponin-T weekly." },
+                        { title: "👨‍⚕️ Multi-Disciplinary Consult", desc: "Schedule immediate joint review with attending SRM Hospital Oncologist & Cardiologist." },
+                        { title: "⚡ Chemo Dosing Adjustment", desc: "Evaluate temporary dose reduction or infusion rate extension for Anthracyclines." }
+                    ]
+                },
+                safe: {
+                    isDanger: false,
+                    title: "💚 Risk Prediction Agent: PATIENT IS SAFE & CLEAR",
+                    subtitle: "Consensus Score: 3.2% Low Risk | Patient #SRM-CARDIO-1042",
+                    shap: "Primary Drivers: Normal LVEF (64%), Baseline Biomarkers Normal, Zero Anthracycline Overload",
+                    guidelines: [
+                        { title: "✅ Normal Treatment Schedule", desc: "Clear to proceed with scheduled oncology cycles without interruption." },
+                        { title: "🗓️ Routine Monitoring", desc: "Maintain standard quarterly baseline ECG and cardiac echo follow-ups." },
+                        { title: "🍏 Healthy Lifestyle Advice", desc: "Encourage standard light activity, hydration, and routine clinical checkups." },
+                        { title: "📋 Re-Assessment Threshold", desc: "System will automatically re-evaluate upon any future medication dose change." }
+                    ]
+                }
+            }
+        };
+
+        function openAgentSimulation(agentKey) {
+            const data = agentSimulations[agentKey][selectedCase];
+            let htmlContent = "";
+
+            if (agentKey === 'riskPredictionAgent') {
+                if (data.isDanger) {
+                    htmlContent = `
+                        <div class="embedded-scholar-info" style="border-left-color: var(--accent-cardio);">
+                            <div>
+                                <h2 style="color: var(--accent-cardio);">${data.title}</h2>
+                                <span style="color: var(--srm-gold); font-weight: 700;">${data.subtitle}</span>
+                            </div>
+                        </div>
+
+                        <div class="alert-card-danger">
+                            <h3 style="color: #ff0055; font-size: 1.05rem; margin-bottom: 6px;">
+                                ⚠️ CRITICAL CLINICAL ALERT: HIGH CARDIAC RISK DETECTED
+                            </h3>
+                            <p style="font-size: 0.82rem; color: #f8fafc;">
+                                <strong>Explainable SHAP Feature Drivers:</strong> ${data.shap}
+                            </p>
+
+                            <h4 style="color: var(--srm-gold); margin-top: 14px; font-size: 0.88rem; text-transform: uppercase;">
+                                🛠️ ACTIONABLE CARE & PREVENTATIVE GUIDELINES:
+                            </h4>
+                            <div class="guidelines-grid">
+                                ${data.guidelines.map(g => `
+                                    <div class="guide-item" style="border-left: 3px solid #ff0055;">
+                                        <strong style="color: #ff0055;">${g.title}</strong><br>
+                                        <span style="color: #cbd5e1; font-size: 0.76rem;">${g.desc}</span>
+                                    </div>
+                                `).join('')}
+                            </div>
+                        </div>
+                    `;
+                } else {
+                    htmlContent = `
+                        <div class="embedded-scholar-info" style="border-left-color: var(--accent-green);">
+                            <div>
+                                <h2 style="color: var(--accent-green);">${data.title}</h2>
+                                <span style="color: #fff; font-weight: 700;">${data.subtitle}</span>
+                            </div>
+                        </div>
+
+                        <div class="alert-card-safe">
+                            <h3 style="color: #10b981; font-size: 1.05rem; margin-bottom: 6px;">
+                                🎉 EXCELLENT! PATIENT IS ALRIGHT & CARDIAC HEALTH IS STABLE
+                            </h3>
+                            <p style="font-size: 0.82rem; color: #f8fafc;">
+                                <strong>Explainable Baseline Factors:</strong> ${data.shap}
+                            </p>
+
+                            <h4 style="color: var(--accent-green); margin-top: 14px; font-size: 0.88rem; text-transform: uppercase;">
+                                👍 RECOMMENDED ROUTINE CARE PLAN:
+                            </h4>
+                            <div class="guidelines-grid">
+                                ${data.guidelines.map(g => `
+                                    <div class="guide-item" style="border-left: 3px solid #10b981;">
+                                        <strong style="color: #10b981;">${g.title}</strong><br>
+                                        <span style="color: #cbd5e1; font-size: 0.76rem;">${g.desc}</span>
+                                    </div>
+                                `).join('')}
+                            </div>
+                        </div>
+                    `;
+                }
+            } else {
+                htmlContent = `
+                    <div class="embedded-scholar-info">
+                        <div>
+                            <h2 style="color: #fff; margin-bottom: 4px;">${data.title}</h2>
+                            <span style="color: var(--accent-agentic); font-weight: 700;">${data.subtitle}</span>
+                        </div>
+                    </div>
+                    <div class="simulation-container">
+                `;
+
+                data.steps.forEach(step => {
+                    htmlContent += `
+                        <div class="sim-step-box">
+                            <h4>⚡ ${step.title}</h4>
+                            <p style="color: #cbd5e1;">${step.desc}</p>
+                            <div class="code-block-sim">${step.code}</div>
+                        </div>
+                    `;
+                });
+
+                htmlContent += `</div>`;
+            }
+
+            document.getElementById('simulationContent').innerHTML = htmlContent;
+            openModal('agentSimulationModal');
+        }
+
+        document.addEventListener('keydown', (e) => {
+            if (e.key === 'Escape') {
+                document.querySelectorAll('.modal-overlay').forEach(m => m.classList.remove('active'));
+            }
+        });
+    </script>
+</body>
+</html>
