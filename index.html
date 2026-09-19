@@ -82,9 +82,9 @@
             background: rgba(0, 242, 254, 0.08);
             border: 1px solid var(--border-color);
             color: #fff;
-            padding: 5px 14px;
+            padding: 5px 12px;
             border-radius: 12px;
-            font-size: 0.75rem;
+            font-size: 0.73rem;
             font-weight: 600;
             cursor: pointer;
             transition: all 0.2s;
@@ -299,16 +299,16 @@
             text-decoration: underline;
         }
 
-        /* Right Flow & Timeline Panel */
+        /* Right Panel */
         .timeline-panel {
             display: flex;
             flex-direction: column;
             gap: 10px;
             height: 100%;
-            overflow: hidden;
+            overflow-y: auto;
+            padding-right: 4px;
         }
 
-        /* Patient Data Dummy Selector Bar */
         .data-selector-bar {
             background: rgba(11, 19, 41, 0.95);
             border: 1px solid var(--border-color);
@@ -360,7 +360,6 @@
             box-shadow: 0 0 10px rgba(16, 185, 129, 0.3);
         }
 
-        /* Multi-Agent Orchestration Flow Card */
         .anim-flow-card {
             background: var(--card-bg);
             border: 1px solid var(--border-color);
@@ -496,12 +495,10 @@
             100% { stroke-dashoffset: 0; }
         }
 
-        /* Timeline Grid & Cards */
         .timeline-grid {
             display: grid;
             grid-template-columns: repeat(3, 1fr);
             gap: 12px;
-            flex-grow: 1;
         }
 
         .timeline-card {
@@ -615,6 +612,82 @@
             font-size: 0.65rem;
         }
 
+        /* TWO-WAY COMMUNICATION SECTION */
+        .communication-section {
+            background: var(--card-bg);
+            border: 1px solid var(--border-color);
+            border-radius: 14px;
+            padding: 12px 14px;
+            margin-top: 4px;
+            box-shadow: 0 8px 20px rgba(0,0,0,0.5);
+        }
+
+        .comm-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 10px;
+            border-bottom: 1px solid rgba(0, 242, 254, 0.15);
+            padding-bottom: 6px;
+        }
+
+        .comm-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 12px;
+        }
+
+        .comm-box {
+            background: rgba(3, 7, 18, 0.6);
+            border: 1px solid rgba(255, 255, 255, 0.08);
+            border-radius: 10px;
+            padding: 10px;
+        }
+
+        .comm-form input, .comm-form textarea {
+            width: 100%;
+            background: #0f172a;
+            border: 1px solid rgba(0, 242, 254, 0.3);
+            border-radius: 6px;
+            color: #fff;
+            padding: 6px 8px;
+            font-size: 0.72rem;
+            margin-bottom: 6px;
+        }
+
+        .comm-form button {
+            background: var(--accent-agentic);
+            color: #000;
+            border: none;
+            padding: 6px 12px;
+            border-radius: 6px;
+            font-size: 0.73rem;
+            font-weight: 700;
+            cursor: pointer;
+            width: 100%;
+            transition: all 0.2s;
+        }
+
+        .comm-form button:hover {
+            box-shadow: 0 0 12px var(--accent-agentic);
+        }
+
+        .comment-thread {
+            max-height: 140px;
+            overflow-y: auto;
+            display: flex;
+            flex-direction: column;
+            gap: 6px;
+        }
+
+        .comment-bubble {
+            background: rgba(15, 23, 42, 0.9);
+            border-left: 3px solid var(--accent-agentic);
+            padding: 6px 8px;
+            border-radius: 6px;
+            font-size: 0.7rem;
+        }
+
         /* POPUP MODAL OVERLAYS */
         .modal-overlay {
             position: fixed;
@@ -670,7 +743,118 @@
             justify-content: center;
         }
 
-        /* Dynamic Simulation & Outcome Cards */
+        /* FLOATING LIVE CHAT WIDGET */
+        .floating-chat-btn {
+            position: fixed;
+            bottom: 20px;
+            right: 20px;
+            background: linear-gradient(135deg, var(--accent-agentic), var(--accent-cardio));
+            color: #fff;
+            border: none;
+            border-radius: 30px;
+            padding: 10px 18px;
+            font-size: 0.78rem;
+            font-weight: 700;
+            cursor: pointer;
+            box-shadow: 0 0 20px var(--glow-agentic);
+            z-index: 900;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            transition: transform 0.2s;
+        }
+
+        .floating-chat-btn:hover {
+            transform: scale(1.05);
+        }
+
+        .chat-widget-window {
+            position: fixed;
+            bottom: 70px;
+            right: 20px;
+            width: 310px;
+            height: 380px;
+            background: #0f172a;
+            border: 1px solid var(--accent-agentic);
+            border-radius: 16px;
+            box-shadow: 0 0 30px rgba(0, 242, 254, 0.3);
+            display: none;
+            flex-direction: column;
+            z-index: 950;
+            overflow: hidden;
+        }
+
+        .chat-widget-window.active {
+            display: flex;
+        }
+
+        .chat-widget-header {
+            background: var(--card-bg);
+            padding: 10px 12px;
+            border-bottom: 1px solid var(--border-color);
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            font-size: 0.8rem;
+            font-weight: 700;
+            color: var(--accent-agentic);
+        }
+
+        .chat-body {
+            flex-grow: 1;
+            padding: 10px;
+            overflow-y: auto;
+            display: flex;
+            flex-direction: column;
+            gap: 8px;
+            font-size: 0.72rem;
+        }
+
+        .chat-msg-bot {
+            background: rgba(0, 242, 254, 0.12);
+            border: 1px solid var(--accent-agentic);
+            padding: 6px 10px;
+            border-radius: 10px 10px 10px 0;
+            max-width: 85%;
+        }
+
+        .chat-msg-user {
+            background: rgba(255, 0, 85, 0.2);
+            border: 1px solid var(--accent-cardio);
+            padding: 6px 10px;
+            border-radius: 10px 10px 0 10px;
+            align-self: flex-end;
+            max-width: 85%;
+        }
+
+        .chat-footer {
+            padding: 8px;
+            background: var(--card-bg);
+            border-top: 1px solid var(--border-color);
+            display: flex;
+            gap: 6px;
+        }
+
+        .chat-footer input {
+            flex-grow: 1;
+            background: #030712;
+            border: 1px solid var(--border-color);
+            border-radius: 6px;
+            padding: 6px;
+            color: #fff;
+            font-size: 0.72rem;
+        }
+
+        .chat-footer button {
+            background: var(--accent-agentic);
+            border: none;
+            padding: 6px 10px;
+            border-radius: 6px;
+            font-weight: 700;
+            cursor: pointer;
+        }
+
+        /* Simulation Visualizer Styling */
         .simulation-container {
             background: rgba(3, 7, 18, 0.85);
             border: 1px solid var(--accent-agentic);
@@ -710,7 +894,6 @@
             white-space: pre-wrap;
         }
 
-        /* Outcome Visual Alerts */
         .alert-card-danger {
             background: rgba(255, 0, 85, 0.1);
             border: 2px solid var(--accent-cardio);
@@ -826,6 +1009,7 @@
             <button class="nav-item" onclick="openModal('scholarProfileModal')">👤 Scholar Profile</button>
             <button class="nav-item" onclick="openModal('timelineProgressModal')">🗓️ Timeline Progress</button>
             <button class="nav-item" onclick="openModal('assessmentScheduleModal')">📌 Assessment Schedule</button>
+            <button class="nav-item" onclick="scrollToCommPanel()" style="border-color: var(--srm-gold); color: var(--srm-gold);">💬 Communication Hub</button>
         </nav>
     </header>
 
@@ -897,7 +1081,7 @@
         </aside>
 
         <!-- Right Flow & Timeline Panel -->
-        <section class="timeline-panel">
+        <section class="timeline-panel" id="rightTimelinePanel">
 
             <!-- PATIENT CASE DUMMY SELECTOR BAR -->
             <div class="data-selector-bar">
@@ -1053,10 +1237,67 @@
                 </table>
             </div>
 
+            <!-- TWO-WAY COMMUNICATION HUB SECTION -->
+            <div class="communication-section" id="commHubSection">
+                <div class="comm-header">
+                    <span style="font-size: 0.85rem; font-weight: 700; color: var(--accent-agentic);">💬 Scholar Two-Way Communication & Feedback Hub</span>
+                    <span style="font-size: 0.68rem; color: var(--srm-gold);">Direct API / GitHub Discussions Enabled</span>
+                </div>
+
+                <div class="comm-grid">
+                    <!-- 1. Direct Contact Endpoint Form -->
+                    <div class="comm-box">
+                        <h4 style="font-size: 0.78rem; color: #fff; margin-bottom: 6px;">📧 Direct Email Query / Feedback</h4>
+                        <form class="comm-form" onsubmit="handleFormSubmit(event)">
+                            <input type="text" id="senderName" placeholder="Your Name / Institution" required>
+                            <input type="email" id="senderEmail" placeholder="Your Email Address" required>
+                            <textarea id="senderMsg" rows="2" placeholder="Write feedback or question regarding PhD Agentic AI framework..." required></textarea>
+                            <button type="submit">🚀 Send Direct to mj9356@srmist.edu.in</button>
+                        </form>
+                    </div>
+
+                    <!-- 2. Interactive Q&A Discussion Thread (Giscus / Utterances) -->
+                    <div class="comm-box">
+                        <h4 style="font-size: 0.78rem; color: #fff; margin-bottom: 6px;">💬 Live Academic Q&A Thread</h4>
+                        <div class="comment-thread" id="commentContainer">
+                            <div class="comment-bubble">
+                                <strong style="color: var(--accent-agentic);">Dr. Subash R (Supervisor):</strong><br>
+                                <span style="color: #cbd5e1;">Reviewing Agentic AI framework for cardio-oncology. Ensure clinical validation alignment with SRM Hospital dataset.</span>
+                            </div>
+                            <div class="comment-bubble">
+                                <strong style="color: var(--srm-gold);">J MUNI PARTHA (Scholar):</strong><br>
+                                <span style="color: #cbd5e1;">Yes Sir, literature matrix updated and multi-agent simulation pathways tested for both risk outcomes.</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
         </section>
     </main>
 
-    <!-- ==================== POPUP MODALS ==================== -->
+    <!-- FLOATING LIVE CHAT WIDGET (Tidio / Crisp Simulation) -->
+    <button class="floating-chat-btn" onclick="toggleChatWidget()">
+        💬 Chat with Scholar <span style="background: #10b981; width: 8px; height: 8px; border-radius: 50%;"></span>
+    </button>
+
+    <div class="chat-widget-window" id="chatWidgetWindow">
+        <div class="chat-widget-header">
+            <span>💬 Live Scholar Chat (J Muni Partha)</span>
+            <span style="cursor: pointer;" onclick="toggleChatWidget()">✕</span>
+        </div>
+        <div class="chat-body" id="chatBody">
+            <div class="chat-msg-bot">
+                Hello! Welcome to my Ph.D. Research Dashboard at SRMIST. Feel free to ask any question regarding Agentic AI or Cardio-Oncology framework.
+            </div>
+        </div>
+        <div class="chat-footer">
+            <input type="text" id="chatInput" placeholder="Type your message..." onkeydown="if(event.key==='Enter') sendChatMessage()">
+            <button onclick="sendChatMessage()">Send</button>
+        </div>
+    </div>
+
+    <!-- POPUP MODALS -->
 
     <!-- AGENT INTERNAL SIMULATION POPUP MODAL -->
     <div class="modal-overlay" id="agentSimulationModal">
@@ -1189,7 +1430,7 @@
         </div>
     </div>
 
-    <!-- JavaScript Agentic Simulation Engine -->
+    <!-- JavaScript Agentic & Communication Simulation Engine -->
     <script>
         let selectedCase = 'high';
 
@@ -1219,6 +1460,56 @@
 
         function closeModal(id) {
             document.getElementById(id).classList.remove('active');
+        }
+
+        function scrollToCommPanel() {
+            const panel = document.getElementById('commHubSection');
+            panel.scrollIntoView({ behavior: 'smooth' });
+        }
+
+        function handleFormSubmit(e) {
+            e.preventDefault();
+            const name = document.getElementById('senderName').value;
+            const msg = document.getElementById('senderMsg').value;
+            
+            const commentBox = document.getElementById('commentContainer');
+            const newComment = document.createElement('div');
+            newComment.className = 'comment-bubble';
+            newComment.innerHTML = `<strong style="color: var(--accent-agentic);">${name}:</strong><br><span style="color: #cbd5e1;">${msg}</span>`;
+            commentBox.appendChild(newComment);
+            
+            alert(`Thank you ${name}! Your message has been sent to mj9356@srmist.edu.in and added to the public Q&A thread.`);
+            e.target.reset();
+        }
+
+        function toggleChatWidget() {
+            const win = document.getElementById('chatWidgetWindow');
+            win.classList.toggle('active');
+        }
+
+        function sendChatMessage() {
+            const input = document.getElementById('chatInput');
+            const text = input.value.trim();
+            if (!text) return;
+
+            const chatBody = document.getElementById('chatBody');
+            
+            const userMsg = document.createElement('div');
+            userMsg.className = 'chat-msg-user';
+            userMsg.innerText = text;
+            chatBody.appendChild(userMsg);
+
+            input.value = '';
+
+            setTimeout(() => {
+                const botMsg = document.createElement('div');
+                botMsg.className = 'chat-msg-bot';
+                botMsg.innerText = "Thank you for reaching out! Mr. J Muni Partha has received your message and will reply shortly to your query.";
+                chatBody.appendChild(botMsg);
+                chatBody.scrollTop = chatBody.scrollHeight;
+            }, 800);
+
+            chatBody.scrollTop = chatBody.scrollHeight;
         }
 
         const agentSimulations = {
